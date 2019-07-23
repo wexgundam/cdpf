@@ -207,6 +207,8 @@ public class SysResourceController  {
         } else {
             int tab = sysResource.getResourceLevel();
             String backUrl = request.getParameter("backUrl") + "&tab=" + tab;
+            //清空缓存
+            EhCacheUtil.removeAll("sysCache");
             // 资源修改成功
             return "forward:/success.htm?backUrl=" + StringUtil.encodeUrl(backUrl) + "&resultCode=" + GlobalCode.SAVE_SUCCESS;
         }
@@ -272,6 +274,8 @@ public class SysResourceController  {
             //还有下级节点，不能删除
             return "forward:/error.htm?resultCode=20103";
         } else {
+            //清空缓存
+            EhCacheUtil.removeAll("sysCache");
             //删除成功
             return "forward:/success.htm?resultCode=" + GlobalCode.DELETE_SUCCESS;
         }
