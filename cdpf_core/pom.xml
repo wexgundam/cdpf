@@ -171,4 +171,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>com.critc.cdpf.snapshots</id>
+            <name>com.critc.cdpf.snapshots</name>
+            <url>http://localhost:8081/nexus/content/repositories/com.critc.cdpf.snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

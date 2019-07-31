@@ -12,7 +12,7 @@ public class SysUserSearchVO extends PageSearchVO {
     private String username;//username
     private Integer status;//状态
     private Integer roleId;//角色
-    private String realname;//姓名
+    private String realName;//姓名
     private String currentUser;//当前用户，如果为system，可以看全部的，如果不为system，不能看system用户
     private Integer  departmentId;//部门ID
     private String  departmentName;//部门名称
@@ -37,7 +37,7 @@ public class SysUserSearchVO extends PageSearchVO {
 
     //姓名模糊查询
     public String getRealnameStr() {
-        return "%" + realname + "%";
+        return "%" + realName + "%";
     }
 
     public String getCurrentUser() {
@@ -54,7 +54,7 @@ public class SysUserSearchVO extends PageSearchVO {
                 "username='" + username + '\'' +
                 ", status=" + status +
                 ", roleId=" + roleId +
-                ", realname='" + realname + '\'' +
+                ", realName='" + realName + '\'' +
                 ", currentUser='" + currentUser + '\'' +
                 ", departmentId=" + departmentId +
                 ", departmentName='" + departmentName + '\'' +
@@ -87,12 +87,12 @@ public class SysUserSearchVO extends PageSearchVO {
     }
 
 
-    public String getRealname() {
-        return realname;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
 	public Integer getDepartmentId() {

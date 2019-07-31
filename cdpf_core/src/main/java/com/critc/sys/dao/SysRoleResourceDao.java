@@ -20,7 +20,7 @@ public class SysRoleResourceDao extends BaseDao<SysRoleResource, SysRoleResource
      * @return
      */
     public List<SysRoleResource> listRoleResourceByType(int roleId, int type) {
-        String sql = "select r.role_id,r.resource_id,s.code resourceCode,s.url from t_sys_roleresource r,t_sys_resource s where r.resource_id=s.id and r.role_id=? and type=? ";
+        String sql = "select r.role_id,r.resource_id,s.code resourceCode,s.url from t_sys_role_resource r,t_sys_resource s where r.resource_id=s.id and r.role_id=? and type=? ";
         return list(sql, roleId, type);
     }
 
@@ -31,7 +31,7 @@ public class SysRoleResourceDao extends BaseDao<SysRoleResource, SysRoleResource
      * @return
      */
     public List<SysRoleResource> listRoleResource(int roleId) {
-        String sql = "select s.url,nvl((select id from t_sys_roleresource where role_id=? and resource_id=s.id),0) resourceId " +
+        String sql = "select s.url,nvl((select id from t_sys_role_resource where role_id=? and resource_id=s.id),0) resourceId " +
                 " from t_sys_resource s  where s.url!='#'";
         return list(sql, roleId);
     }
@@ -42,7 +42,7 @@ public class SysRoleResourceDao extends BaseDao<SysRoleResource, SysRoleResource
      * @param roleId
      */
     public void deleteRoleResource(int roleId) {
-        String sql = "delete from t_sys_roleresource where role_id=?";
+        String sql = "delete from t_sys_role_resource where role_id=?";
         delete(sql, roleId);
     }
 
@@ -53,7 +53,7 @@ public class SysRoleResourceDao extends BaseDao<SysRoleResource, SysRoleResource
      * @param resourceId
      */
     public void addRoleResource(int roleId, int resourceId) {
-        String sql = "insert into t_sys_roleresource(id,role_id,resource_id) values(seq_t_sys_resource.nextval,?,?)";
+        String sql = "insert into t_sys_role_resource(id,role_id,resource_id) values(seq_t_sys_role_resource.nextval,?,?)";
         update(sql, roleId, resourceId);
     }
 

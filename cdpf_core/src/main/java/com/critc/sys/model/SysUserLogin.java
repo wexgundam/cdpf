@@ -50,7 +50,7 @@ public class SysUserLogin {
 	/**
 	 * 真实姓名
 	 */
-	private String realname;
+	private String realName;
 	/**
 	 * sessionId
 	 */
@@ -88,12 +88,12 @@ public class SysUserLogin {
 		this.username = username;
 	}
 
-	public String getRealname() {
-		return realname;
+	public String getRealName() {
+		return realName;
 	}
 
-	public void setRealname(String realname) {
-		this.realname = realname;
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")

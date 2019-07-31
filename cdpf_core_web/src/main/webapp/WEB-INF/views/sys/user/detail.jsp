@@ -69,11 +69,11 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">真实姓名：</label>
                                 <div class="col-md-9">
-                                    <input id="realname" type="text" name="realname"
+                                    <input id="realName" type="text" name="realName"
                                            style="border: hidden;background: none" readonly
                                            class="form-control input-inline input-medium "
-                                           placeholder="" value="${sysUser.realname}"><label
-                                        id="realnameTip"></label>
+                                           placeholder="" value="${sysUser.realName}"><label
+                                        id="realNameTip"></label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -470,7 +470,7 @@ init();
                         return startIndex + meta.row + 1;
                     }
                     },
-                    {"data": "realname"},
+                    {"data": "realName"},
                     {"data": "username"},
                     {"data": "operaDate"},
                     {"data": "operaIp"},

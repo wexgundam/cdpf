@@ -125,7 +125,7 @@ $(function () {
                 return startIndex + meta.row + 1;
             }
             },
-            {"data": "realname"},
+            {"data": "realName"},
             {"data": "username"},
             {"data": "operaDate"},
             {"data": "operaIp"},

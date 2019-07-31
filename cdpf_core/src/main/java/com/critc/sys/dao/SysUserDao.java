@@ -23,15 +23,17 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * what:    (这里用一句话描述这个方法的作用)
      *
      * @param sysUser
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     public int add(SysUser sysUser) {
-        String sql = "insert into t_sys_user(id,username,password,avatar,randomcode,status,realname,mobile," +
-                "created_at,created_by,role_id,department_id,pinyin,email,nation,gender,political,education," +
+        String sql = "insert into t_sys_user(id,username,password,avatar,randomcode,status,real_name,mobile," +
+                "creator_id,creator_real_name,created_at,role_id,department_id,pinyin,email,nation,gender,political,education," +
                 "graduated_school,major,idcard,telephone,post,job_title,display_order,last_login_date,completion)";
-        sql += " values(seq_t_sys_user.nextval,:username,:password,:avatar,:randomcode,1,:realname,:mobile,sysdate," +
-                ":createdBy,:roleId,:departmentId,:pinyin,:email,:nation,:gender,:political,:education," +
+        sql += " values(seq_t_sys_user.nextval,:username,:password,:avatar,:randomcode,1,:realName,:mobile," +
+                ":creatorId,:creatorRealName,sysdate,:roleId,:departmentId,:pinyin,:email,:nation,:gender,:political,:education," +
                 ":graduatedSchool,:major,:idcard,:telephone,:post,:jobTitle,:displayOrder,:lastLoginDate,:completion)";
         return insertForId(sql, sysUser, "id");
     }
@@ -40,11 +42,13 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * 修改用户
      *
      * @param sysUser
+     *
      * @return
      */
     public int update(SysUser sysUser) {
-        String sql = "update t_sys_user set realname=:realname,role_id=:roleId,mobile=:mobile,last_modified_by=:lastModifiedBy," +
-                "last_modified_at=sysdate,department_id=:departmentId, pinyin=:pinyin,avatar=:avatar," +
+        String sql = "update t_sys_user set real_name=:realName,role_id=:roleId,mobile=:mobile," +
+                "last_editor_id=:lastEditorId,last_editor_real_name=:lastEditorRealName,last_edited_at=sysdate," +
+                "department_id=:departmentId, pinyin=:pinyin,avatar=:avatar," +
                 "email=:email,nation=:nation,gender=:gender,political=:political,education=:education," +
                 "graduated_school=:graduatedSchool,major=:major,idcard=:idcard,telephone=:telephone,post=:post," +
                 "job_title=:jobTitle,display_order=:displayOrder,completion=:completion " +
@@ -59,6 +63,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * @param id
      * @param newPass
      * @param randowmcode
+     *
      * @return
      */
     public int updatePass(int id, String newPass, String randowmcode) {
@@ -72,6 +77,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      *
      * @param id
      * @param status
+     *
      * @return
      */
     public int updateStatus(int id, int status) {
@@ -83,6 +89,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * 删除用户
      *
      * @param id
+     *
      * @return
      */
     public int delete(int id) {
@@ -91,10 +98,10 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
     }
 
     public SysUser get(int id) {
-        String sql = "select t.id,t.id,t.username,t.password,t.randomcode,t.status,t.realname,t.mobile,t.avatar,t" +
-                ".created_at,t.created_by,t.role_id,t.last_modified_by,t.last_modified_at,t.department_id,t.is_admin," +
-                "t.is_check,t.pinyin,t.email,t.gender,t.nation,t.political,t.education,t.graduated_school,t.major," +
-                "t.idcard,t.telephone,t.post,t.job_title,t.display_order,t.last_login_date,t.completion,(select name " +
+        String sql = "select t.id,t.id,t.username,t.password,t.randomcode,t.status,t.real_name,t.mobile,t.avatar," +
+                "t.creator_id,t.creator_real_name,t.created_at,t.last_editor_id,t.last_editor_real_name,t.last_edited_at," +
+                "t.department_id,t.is_admin,t.is_check,t.pinyin,t.email,t.gender,t.nation,t.political,t.education,t.graduated_school," +
+                "t.major,t.idcard,t.telephone,t.post,t.job_title,t.display_order,t.last_login_date,t.completion,(select name " +
                 "from t_sys_department d where t.department_id=d.id) as department_name,(select name " +
                 "from t_sys_role d where t.role_id=d.id) as role_name from t_sys_user t where " +
                 "id=? ";
@@ -105,11 +112,15 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * what:    根据username获取sysUser
      *
      * @param username
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     public SysUser getByUsername(String username) {
-        String sql = "select t.id,t.username,t.password,t.randomcode,t.status,t.realname,t.mobile,t.avatar,t.created_at,t.created_by,t.role_id,t.last_modified_by,t.last_modified_at,(select name from t_sys_role where id=role_id) roleName from t_sys_user t where username=?";
+        String sql = "select t.id,t.username,t.password,t.randomcode,t.status,t.real_name,t.mobile,t.avatar,t.role_id," +
+                "t.creator_id,t.creator_real_name,t.created_at,t.last_editor_id,t.last_editor_real_name,t.last_edited_at," +
+                "(select name from t_sys_role where id=role_id) roleName from t_sys_user t where username=?";
         return get(sql, username);
     }
 
@@ -117,10 +128,13 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * 根据手机号获取用户
      *
      * @param mobile
+     *
      * @return
      */
     public SysUser getByMobile(String mobile) {
-        String sql = "select t.id,t.username,t.password,t.randomcode,t.status,t.realname,t.mobile,t.avatar,t.created_at,t.created_by,t.role_id,t.last_modified_by,t.last_modified_at,(select name from t_sys_role where id=role_id) roleName from t_sys_user t where mobile=?";
+        String sql = "select t.id,t.username,t.password,t.randomcode,t.status,t.real_name,t.mobile,t.avatar," +
+                "t.creator_id,t.creator_real_name,t.created_at,t.last_editor_id,t.last_editor_real_name,t.last_edited_at," +
+                "(select name from t_sys_role where id=role_id) roleName from t_sys_user t where mobile=?";
         return get(sql, mobile);
     }
 
@@ -128,18 +142,16 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * 查询用户信息
      *
      * @param sysUserSearchVO
+     *
      * @return
      */
     public List<SysUser> list(SysUserSearchVO sysUserSearchVO) {
-        String sql = "select t.id, t.username, t.password, t.randomcode, t.status, t.realname, t.mobile, t.avatar," +
-                " t.created_at, t.created_by, t.role_id, t.last_modified_by, t.last_modified_at, t.department_id," +
-                "t.is_admin, t.is_check, t.pinyin, t.email, t.gender, t.nation, t.political, t.education," +
-                "t.graduated_school,t.major, t.idcard, t.telephone, t.post, t.job_title, t" +
-                ".display_order," +
-                "t.last_login_date," +
+        String sql = "select t.id, t.username, t.password, t.randomcode, t.status, t.real_name, t.mobile, t.avatar,t.role_id," +
+                "t.creator_id,t.creator_real_name,t.created_at,t.last_editor_id,t.last_editor_real_name,t.last_edited_at," +
+                "t.department_id,t.is_admin, t.is_check, t.pinyin, t.email, t.gender, t.nation, t.political, t.education," +
+                "t.graduated_school,t.major, t.idcard, t.telephone, t.post, t.job_title, t.display_order,t.last_login_date," +
                 "(select name from t_sys_department d where t.department_id = d.id) as department_name,  " +
-                "(select name from t_sys_role where id = t.role_id) roleName from t_sys_user t where " +
-                "1=1 ";
+                "(select name from t_sys_role where id = t.role_id) roleName from t_sys_user t where 1=1";
         sql += createSearchSql(sysUserSearchVO);
         sql += " order by t.id asc";
         sql = PageUtil.createOraclePageSQL(sql, sysUserSearchVO.getPageIndex());
@@ -147,12 +159,11 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
     }
 
     public List<SysUser> listAll() {
-        String sql = "select t.id, t.username, t.password, t.randomcode, t.status, t.realname, t.mobile, t.avatar," +
-                " t.created_at, t.created_by, t.role_id, t.last_modified_by, t.last_modified_at, t.department_id," +
-                "t.is_admin, t.is_check, t.pinyin, t.email, t.gender, t.nation, t.political, t.education," +
-                "t.graduated_school, t.major, t.idcard, t.telephone, t.post, t.job_title, t.display_order," +
-                "t.last_login_date," +
-                "(select name from t_sys_department d where t.department_id = d.id) as department_name,  " +
+        String sql = "select t.id, t.username, t.password, t.randomcode, t.status, t.real_name, t.mobile, t.avatar," +
+                "t.creator_id,t.creator_real_name,t.created_at,t.last_editor_id,t.last_editor_real_name,t.last_edited_at," +
+                "t.department_id,t.is_admin, t.is_check, t.pinyin, t.email, t.gender, t.nation, t.political, t.education," +
+                "t.graduated_school, t.major, t.idcard, t.telephone, t.post, t.job_title, t.display_order,t.last_login_date," +
+                "(select name from t_sys_department d where t.department_id = d.id) as department_name," +
                 "(select name from t_sys_role where id = t.role_id) roleName from t_sys_user t ";
         sql += " order by t.id asc";
         return list(sql);
@@ -162,6 +173,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * 查询用户总数
      *
      * @param sysUserSearchVO
+     *
      * @return
      */
     public int count(SysUserSearchVO sysUserSearchVO) {
@@ -175,8 +187,8 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
         if (StringUtil.isNotNullOrEmpty(sysUserSearchVO.getUsername())) {
             sql += " and username=:username";
         }
-        if (StringUtil.isNotNullOrEmpty(sysUserSearchVO.getRealname())) {
-            sql += " and realname like :realnameStr";
+        if (StringUtil.isNotNullOrEmpty(sysUserSearchVO.getRealName())) {
+            sql += " and real_name like :realName";
         }
         if (sysUserSearchVO.getRoleId() != null) {
             sql += " and role_id=:roleId";
@@ -213,6 +225,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      *
      * @param id
      * @param avatar 头像
+     *
      * @return
      */
     public int updateAvatar(int id, String avatar) {
@@ -224,10 +237,11 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * 根据部门ID查询系统用户
      *
      * @param departmentId
+     *
      * @return
      */
     public List<SysUser> listUserByDepartmentId(int departmentId) {
-        String sql = "select t.id,t.username,t.realname,t.post,t.telephone,t.mobile "
+        String sql = "select t.id,t.username,t.real_name,t.post,t.telephone,t.mobile "
                 + "from t_sys_user t "
                 + "where t.department_id = ?";
         sql += " order by id asc";
@@ -238,6 +252,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * 根据部门ID查询系统用户数量
      *
      * @param departmentId
+     *
      * @return
      */
     public int countUserByDepartmentId(int departmentId) {

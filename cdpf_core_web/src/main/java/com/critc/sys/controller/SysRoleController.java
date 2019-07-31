@@ -168,15 +168,17 @@ public class SysRoleController {
 	@RequestMapping("/add")
 	public String add(HttpServletRequest request, HttpServletResponse response, @Valid SysRole sysRole) {
 		// 创建人
-		sysRole.setCreatedBy(SessionUtil.getRealname(request));
+		sysRole.setCreatorId(SessionUtil.getUserId(request));
+		sysRole.setCreatorRealName(SessionUtil.getUserRealName(request));
 		// 修改人
-		sysRole.setLastModifiedBy(SessionUtil.getRealname(request));
+		sysRole.setLastEditorId(SessionUtil.getUserId(request));
+		sysRole.setLastEditorRealName(SessionUtil.getUserRealName(request));
 		String moduleArr = WebUtil.getSafeStr(request.getParameter("moduleArr"));
 		String functionArr = WebUtil.getSafeStr(request.getParameter("functionArr"));
 		// 创建人的id
 		sysRole.setCreateUserId(SessionUtil.getUserSession(request).getUserId());
 		// 是否可删除
-		sysRole.setIsDelete(1);
+		sysRole.setDeletable(1);
 		int flag = sysRoleService.add(sysRole, moduleArr, functionArr);
 		if (flag == 0) {
 			// 角色新增失败
@@ -204,7 +206,9 @@ public class SysRoleController {
 	@RequestMapping("/update")
 	public String update(HttpServletRequest request, HttpServletResponse response, @Valid SysRole sysRole) {
 		// 修改人
-		sysRole.setLastModifiedBy(SessionUtil.getRealname(request));
+		sysRole.setLastEditorId(SessionUtil.getUserId(request));
+		sysRole.setLastEditorRealName(SessionUtil.getUserRealName(request));
+
 		String moduleArr = WebUtil.getSafeStr(request.getParameter("moduleArr"));
 		String functionArr = WebUtil.getSafeStr(request.getParameter("functionArr"));
 		int flag = sysRoleService.update(sysRole, moduleArr, functionArr);

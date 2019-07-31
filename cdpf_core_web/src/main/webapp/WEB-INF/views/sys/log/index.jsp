@@ -73,7 +73,7 @@
             <c:forEach items="${list }" var="sysLog" varStatus="st">
                 <tr>
                     <td>${st.index+1 }</td>
-                    <td>${sysLog.realname }</td>
+                    <td>${sysLog.realName }</td>
                     <td>${sysLog.username }</td>
                     <td><fmt:formatDate value="${sysLog.operaDate}" pattern="yyyy-MM-dd HH:mm"/></td>
                     <td>${sysLog.operaIp }</td>

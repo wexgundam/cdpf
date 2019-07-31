@@ -71,10 +71,10 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">真实姓名：</label>
                                 <div class="col-md-9">
-                                    <input id="realname" type="text" name="realname"
+                                    <input id="realName" type="text" name="realName"
                                            class="form-control input-inline input-medium "
-                                           placeholder="" value="${sysUser.realname}"><label
-                                        id="realnameTip"></label>
+                                           placeholder="" value="${sysUser.realName}"><label
+                                        id="realNameTip"></label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -486,7 +486,7 @@
            });
             showCompletion();
             $("#btnEditAvatar").bind('click', showAvatar);
-            $("#realname").bind('change', getpinyin);
+            $("#realName").bind('change', getpinyin);
             $("input[name='gender']").each(function () {
                 if ($(this).val() == '${sysUser.gender}') {
                     $(this).attr("checked", true);
@@ -520,7 +520,7 @@
                     error.appendTo($("#" + element.attr('id') + "Tip"));
                 },
                 rules: {
-                    realname: {
+                    realName: {
                         required: true,
                         maxlength: 20
                     },
@@ -576,13 +576,13 @@
             });
         });
         function getpinyin() {
-            var realname = $("#realname").val();
+            var realName = $("#realName").val();
             $.ajax({
                 type: 'POST',
                 url: 'getPinYin.htm',
                 dataType: 'json',
                 data: {
-                    realname: realname
+                    realName: realName
                 },
                 success: function (result) {
                     if (result["success"]) {

@@ -61,10 +61,10 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">真实姓名：</label>
                                 <div class="col-md-9">
-                                    <input id="realname" type="text" name="realname"
+                                    <input id="realName" type="text" name="realName"
                                            class="form-control input-inline input-medium "
                                            placeholder=""><label
-                                        id="realnameTip"></label>
+                                        id="realNameTip"></label>
                                 </div>
                             </div>
                             <div class="form-group" style="margin-bottom:-20px;">
@@ -434,7 +434,7 @@
                             }
                         }
                     },
-                    realname: {
+                    realName: {
                         required: true,
                         maxlength: 20
                     },

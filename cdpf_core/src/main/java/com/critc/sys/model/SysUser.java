@@ -22,13 +22,12 @@ public class SysUser extends BaseModel {
     private String password;//登录密码
     private String randomcode;//随机数
     private int status;//账号状态
-    private String realname;//姓名
+    private String realName;//姓名
     @Pattern(regexp = RegexUtil.MOBILE_REG)
     private String mobile;//手机号
     @Pattern(regexp = RegexUtil.EMAIL_REG)
     private String email;//邮件
     private String avatar;//头像
-    private Integer isDelete;//是否能够删除
 
     private Integer departmentId;//部门id
     private String departmentName;//部门名称
@@ -66,11 +65,10 @@ public class SysUser extends BaseModel {
                 ", password='" + password + '\'' +
                 ", randomcode='" + randomcode + '\'' +
                 ", status=" + status +
-                ", realname='" + realname + '\'' +
+                ", realName='" + realName + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", email='" + email + '\'' +
                 ", avatar='" + avatar + '\'' +
-                ", isDelete=" + isDelete +
                 ", departmentId=" + departmentId +
                 ", departmentName='" + departmentName + '\'' +
                 ", isAdmin=" + isAdmin +
@@ -154,12 +152,12 @@ public class SysUser extends BaseModel {
         this.status = status;
     }
 
-    public String getRealname() {
-        return realname;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getMobile() {
@@ -176,14 +174,6 @@ public class SysUser extends BaseModel {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Integer getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
     }
 
     public Integer getDepartmentId() {

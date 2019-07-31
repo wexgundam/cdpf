@@ -79,7 +79,7 @@
 							<tr>
 								<td>${st.index+1 }</td>
 								<td>${sysUser.username }</td>
-								<td>${sysUser.realname }</td>
+								<td>${sysUser.realName }</td>
 								<td>${sysUser.roleName }</td>
 								<td>${sysUser.userIp }</td>
 								<td ><a
@@ -115,7 +115,7 @@
 			if ($("#txtUsername").val() != "")
 				url += "username=" + $("#txtUsername").val();
 			if ($("#txtRealname").val() != "") {
-				url += "&realname=" + $("#txtRealname").val();
+				url += "&realName=" + $("#txtRealname").val();
 			}
 
 			if ($("#cmbRoleId").val() != "")
@@ -180,13 +180,13 @@
 		        matchContains: true,  
 		        scrollHeight: 220,  
 		        formatItem: function(data, i, total) {  
-		          return "<font style='color:black;font-size:14px'>"+data.realname+"</font>";  
+		          return "<font style='color:black;font-size:14px'>"+data.realName+"</font>";
 		        },  
 		        formatMatch: function(data, i, total) {  
-		          return data.realname;  
+		          return data.realName;
 		        },  
 		        formatResult: function(data) {  
-		          return data.realname;  
+		          return data.realName;
 		        }  
 		      });  
 		    }  

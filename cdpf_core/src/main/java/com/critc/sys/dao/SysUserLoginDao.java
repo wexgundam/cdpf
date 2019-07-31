@@ -35,8 +35,8 @@ public class SysUserLoginDao extends BaseDao<SysUserLogin, SysUserLoginSearchVO>
     * @author 孔垂云 created on 2017年6月13日
     */
     public void add(SysUserLogin sysUserLogin) {
-        String sql = "insert into t_sys_userlogin(id,user_id,login_date,login_ip,terminal,explorerType,explorerVersion)";
-        sql += " values(seq_t_sys_userlogin.nextval,:userId,:loginDate,:loginIp,:terminal,:explorerType,:explorerVersion)";
+        String sql = "insert into t_sys_user_login (id,user_id,login_date,login_ip,terminal,explorerType,explorerVersion)";
+        sql += " values(seq_t_sys_user_login .nextval,:userId,:loginDate,:loginIp,:terminal,:explorerType,:explorerVersion)";
         insert(sql, sysUserLogin);
     }
 
@@ -50,7 +50,7 @@ public class SysUserLoginDao extends BaseDao<SysUserLogin, SysUserLoginSearchVO>
      * @author 杨超凡 created on 2017年11月10日
      */
     public SysUserLogin getLastLogin(int userId) {
-        String sql = "select t.id,t.user_id,t.login_date,t.login_ip,t.terminal,t.explorertype,t.explorerversion from t_sys_userlogin t where user_id=? and rownum<2 order by login_date desc";
+        String sql = "select t.id,t.user_id,t.login_date,t.login_ip,t.terminal,t.explorertype,t.explorerversion from t_sys_user_login  t where user_id=? and rownum<2 order by login_date desc";
         return get(sql, userId);
     }
 /**
@@ -63,7 +63,7 @@ public class SysUserLoginDao extends BaseDao<SysUserLogin, SysUserLoginSearchVO>
  * @author 杨超凡 created on 2017年11月10日
  */
     public List<SysUserLogin> list(SysUserLoginSearchVO sysUserloginSearchVO) {
-        String sql = "select t.*,u.username username,u.realname realname  from t_sys_userlogin t,t_sys_user u where t.user_id=u.id  ";
+        String sql = "select t.*,u.username username,u.real_name realName  from t_sys_user_login t,t_sys_user u where t.user_id=u.id  ";
         sql += createSearchSql(sysUserloginSearchVO);
         sql += " order by login_date desc";
 		sql = PageUtil.createOraclePageSQL(sql, sysUserloginSearchVO.getPageIndex());
@@ -80,7 +80,7 @@ public class SysUserLoginDao extends BaseDao<SysUserLogin, SysUserLoginSearchVO>
     * @author 杨超凡 created on 2017年11月10日
     */
     public int count(SysUserLoginSearchVO sysUserLoginSearchVO) {
-        String sql = "select count(*) from t_sys_userlogin t,t_sys_user u where t.user_id=u.id ";
+        String sql = "select count(*) from t_sys_user_login t,t_sys_user u where t.user_id=u.id ";
         sql += createSearchSql(sysUserLoginSearchVO);
 		return count(sql, sysUserLoginSearchVO);
     }

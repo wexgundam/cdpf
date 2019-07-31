@@ -74,11 +74,11 @@
                         ${sysRole.name }
                     </td>
                     <td>${sysRole.description }</td>
-                    <td>${sysRole.lastModifiedBy }</td>
-                    <th width=120><fmt:formatDate value="${sysRole.lastModifiedAt}" pattern="yyyy-MM-dd HH:mm"/></th>
+                    <td>${sysRole.lastEditorRealName }</td>
+                    <th width=120><fmt:formatDate value="${sysRole.lastEditedAt}" pattern="yyyy-MM-dd HH:mm"/></th>
                     <td><c:if test="${critc:isP('SysRoleUpdate')}">
                         <a href="toUpdate.htm?id=${sysRole.id }&backUrl=${backUrl}"> 修改 </a>
-                    </c:if> <c:if test="${sysRole.isDelete eq 1 && critc:isP('SysRoleDelete')}">
+                    </c:if> <c:if test="${sysRole.deletable eq 1 && critc:isP('SysRoleDelete')}">
                         <a href="javascript:delRole(${sysRole.id });"> 删除 </a>
                     </c:if></td>
                 </tr>

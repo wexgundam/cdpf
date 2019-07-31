@@ -24,7 +24,7 @@ public class SysLog {
     private String operaName;//操作名称
     private String operaUrl;//操作url
     private String operaParams;//参数
-    private String realname;//用户姓名
+    private String realName;//用户姓名
     private String username;//登录账号
 
     @Override
@@ -38,7 +38,7 @@ public class SysLog {
                 ", operaName='" + operaName + '\'' +
                 ", operaUrl='" + operaUrl + '\'' +
                 ", operaParams='" + operaParams + '\'' +
-                ", realname='" + realname + '\'' +
+                ", realName='" + realName + '\'' +
                 '}';
     }
 
@@ -106,12 +106,12 @@ public class SysLog {
         this.operaParams = operaParams;
     }
 
-    public String getRealname() {
-        return realname;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
 	public String getUsername() {

@@ -41,7 +41,7 @@ public class SysLogDao extends BaseDao<SysLog, SysLogSearchVO> {
 	 * @author 杨超凡 created on 2017年11月10日
 	 */
 	public List<SysLog> list(SysLogSearchVO sysLogSearchVO) {
-		String sql = "select t.*,u.username username,u.realname realname  from t_sys_log t,t_sys_user u where t.user_id=u.id  ";
+		String sql = "select t.*,u.username username,u.real_name realName  from t_sys_log t,t_sys_user u where t.user_id=u.id  ";
 		sql += createSearchSql(sysLogSearchVO);
 		sql += " order by opera_date desc";
 		sql = PageUtil.createOraclePageSQL(sql, sysLogSearchVO.getPageIndex());
@@ -59,7 +59,7 @@ public class SysLogDao extends BaseDao<SysLog, SysLogSearchVO> {
 	 */
 	public List<SysLog> listAll(SysLogSearchVO sysLogSearchVO) {
 		String sql = "select t.id,t.user_id,t.opera_date,t.operea_ip,t.module_name,t.opera_date,t.opera_url"
-				+ ",u.code user_code,u.realname realname  from t_sys_log t,t_sys_user u where t.user_id=u.id  ";
+				+ ",u.code user_code,u.real_name realName  from t_sys_log t,t_sys_user u where t.user_id=u.id  ";
 		sql += createSearchSql(sysLogSearchVO);
 		sql += " order by opera_date desc";
 		List<SysLog> list = list(sql, sysLogSearchVO);

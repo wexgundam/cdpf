@@ -44,8 +44,8 @@ public class SysOnlineUserService {
 			url += "&username=" + sysUserSearchVO.getUsername();
 		}
 		//如果为模糊查询，要把该字段encode
-		if (StringUtil.isNotNullOrEmpty(sysUserSearchVO.getRealname())) {
-			url += "&realname=" + sysUserSearchVO.getRealname();
+		if (StringUtil.isNotNullOrEmpty(sysUserSearchVO.getRealName())) {
+			url += "&realname=" + sysUserSearchVO.getRealName();
 		}
 
 		if (sysUserSearchVO.getRoleId() != null) {
@@ -77,7 +77,7 @@ public class SysOnlineUserService {
 		for (UserSession userSession:sessionlist) {
 			if (userSession != null) {
 				String tempUserName = userSession.getUsername();
-				String tempRealName = userSession.getRealname();
+				String tempRealName = userSession.getRealName();
 				String tempRoleName = String.valueOf(userSession.getRoleId());
 				if (tag1 && tag2 && tag3) {    //三个条件都不为空
 					if ((tempUserName.equals(userName) && tempRealName.equals(realName) && tempRoleName.equals(roleName))) {

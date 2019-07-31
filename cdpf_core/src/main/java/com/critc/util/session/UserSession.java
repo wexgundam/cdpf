@@ -15,7 +15,7 @@ public class UserSession implements Serializable {
     private String userIp;//用户IP
 
     private String username;//用户名  即登录账号
-    private String realname;//真实姓名
+    private String realName;//真实姓名
     private int roleId;//角色id
     private String roleName;//角色名称
     private int corpId = 0;//公司id
@@ -27,7 +27,7 @@ public class UserSession implements Serializable {
                 "userId=" + userId +
                 ", userIp='" + userIp + '\'' +
                 ", username='" + username + '\'' +
-                ", realname='" + realname + '\'' +
+                ", realName='" + realName + '\'' +
                 ", roleId=" + roleId +
                 ", roleName='" + roleName + '\'' +
                 ", corpId=" + corpId +
@@ -75,12 +75,12 @@ public class UserSession implements Serializable {
         this.username = username;
     }
 
-    public String getRealname() {
-        return realname;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public int getRoleId() {

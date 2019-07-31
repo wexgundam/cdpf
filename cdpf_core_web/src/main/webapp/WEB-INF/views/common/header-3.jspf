@@ -25,7 +25,7 @@
 					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 					<li class="dropdown dropdown-user"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> <img alt=""
 							class="img-circle" src="${imageServer}${sessionScope.userSession.avatar}" onerror="this.src='${staticServer}/assets/common/images/avatar_s.jpg'" /> <span
-								class="username username-hide-on-mobile"> ${sessionScope.userSession.realname} </span> <i class="fa fa-angle-down"></i>
+								class="username username-hide-on-mobile"> ${sessionScope.userSession.realName} </span> <i class="fa fa-angle-down"></i>
 					</a>
 						<ul class="dropdown-menu dropdown-menu-default">
 							<li><a href="${dynamicServer}/sys/user/toUpdate.htm?id=0&pageType=2"> <i class="icon-user"></i> 个人信息

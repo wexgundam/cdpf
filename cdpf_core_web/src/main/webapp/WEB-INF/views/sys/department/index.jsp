@@ -72,8 +72,8 @@
 							<td>${department.code}</td>
 							<td>${department.displayOrder}</td>
 							<td>${department.note}</td>
-							<td>${department.lastModifiedBy}</td>
-							<td><fmt:formatDate value="${department.lastModifiedAt}"
+							<td>${department.lastEditorRealName}</td>
+							<td><fmt:formatDate value="${department.lastEditedAt}"
 									pattern="yyyy-MM-dd HH:mm" /></td>
 							<td><c:if test="${critc:isP('SysDepartmentUpdate')}">
 									<a href="toUpdate.htm?id=${department.id}&backUrl=${backUrl}">
@@ -267,7 +267,7 @@
                         return startIndex + meta.row + 1;
                     }
                     },
-                    {"data": "realname"},
+                    {"data": "realName"},
                     {"data": "username"},
                     {"data": "post"},
                     {"data": "telephone"},

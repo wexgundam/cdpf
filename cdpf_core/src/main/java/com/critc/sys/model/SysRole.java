@@ -44,14 +44,14 @@ public class SysRole extends BaseModel {
     /**
      * 是否能够删除，0:不可以被删除；1：可以被删除。默认为1
      */
-    private int isDelete;
+    private int deletable;
 
-    public int getIsDelete() {
-        return isDelete;
+    public int getDeletable() {
+        return deletable;
     }
 
-    public void setIsDelete(int isDelete) {
-        this.isDelete = isDelete;
+    public void setDeletable(int deletable) {
+        this.deletable = deletable;
     }
 
     @Override

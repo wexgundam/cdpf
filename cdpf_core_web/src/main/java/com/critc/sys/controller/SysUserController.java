@@ -59,7 +59,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param sysUserSearchVO
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年7月26日
      */
     @RequestMapping("/index")
@@ -85,15 +87,17 @@ public class SysUserController {
      * when:    一般有查询条件的才会用到
      *
      * @param sysUserSearchVO
+     *
      * @return
+     *
      * @author 马丽静 created on 2017/11/8
      */
     private String createUrl(SysUserSearchVO sysUserSearchVO) {
         String url = pubConfig.getDynamicServer() + "/sys/user/index.htm?";
         if (StringUtil.isNotNullOrEmpty(sysUserSearchVO.getUsername()))
             url += "&username=" + sysUserSearchVO.getUsername();
-        if (StringUtil.isNotNullOrEmpty(sysUserSearchVO.getRealname()))// 如果为模糊查询，要把该字段encode
-            url += "&realname=" + sysUserSearchVO.getRealname();
+        if (StringUtil.isNotNullOrEmpty(sysUserSearchVO.getRealName()))// 如果为模糊查询，要把该字段encode
+            url += "&realname=" + sysUserSearchVO.getRealName();
         if (sysUserSearchVO.getStatus() != null)
             url += "&status=" + sysUserSearchVO.getStatus();
         if (sysUserSearchVO.getRoleId() != null)
@@ -108,7 +112,9 @@ public class SysUserController {
      *
      * @param request
      * @param response
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年7月26日
      */
     @RequestMapping("/toAdd")
@@ -136,7 +142,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param id
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/toUpdate")
@@ -175,7 +183,9 @@ public class SysUserController {
      *
      * @param request
      * @param response
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/departmentTree")
@@ -199,7 +209,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param id
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/detail")
@@ -219,13 +231,16 @@ public class SysUserController {
      * @param request
      * @param response
      * @param sysUser
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/add")
     public String add(HttpServletRequest request, HttpServletResponse response, SysUser sysUser) {
         sysUser.setStatus(1);
-        sysUser.setCreatedBy(SessionUtil.getRealname(request));
+        sysUser.setCreatorId(SessionUtil.getUserId(request));
+        sysUser.setCreatorRealName(SessionUtil.getUserRealName(request));
         int flag = sysUserService.add(sysUser);
         if (flag == 0)
             return "forward:/error.htm?resultCode=" + GlobalCode.OPERA_FAILURE;// 用户信息新增失败;
@@ -242,7 +257,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param sysUser
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/update")
@@ -259,7 +276,7 @@ public class SysUserController {
             WebUtil.out(response, JsonUtil.createOperaStr(false, "/error.htm?resultCode=" + GlobalCode
                     .OPERA_FAILURE));
         } else {
-            if (SessionUtil.getRealname(request).equals(sysUser.getRealname())) {
+            if (SessionUtil.getUserRealName(request).equals(sysUser.getRealName())) {
                 UserSession userSession = SessionUtil.getUserSession(request);
                 userSession.setAvatar(sysUser.getAvatar());
                 request.getSession().setAttribute("userSession", userSession);
@@ -276,6 +293,7 @@ public class SysUserController {
      * when:    保存修改用户信息的时候上传头像及avatar字段存入数据库
      *
      * @return String 数据库存放的avatar字段
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/uploadAvatar")
@@ -300,7 +318,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param id       用户id
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/delete")
@@ -318,7 +338,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param id       用户id
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/saveResetPass")
@@ -337,7 +359,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param id       用户id
+     *
      * @return
+     *
      * @author 孔垂云 created on 2017年11月6日
      */
     @RequestMapping("/saveLock")
@@ -356,7 +380,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param id       用户id
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/saveUnlock")
@@ -375,7 +401,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param username 用户名
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/checkUserExist")
@@ -394,7 +422,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param mobile   手机号
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/checkMobileExist")
@@ -413,7 +443,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param sysUserloginSearchVO 用户登录信息
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/searchUserLogin")
@@ -429,6 +461,7 @@ public class SysUserController {
      * @param request
      * @param response
      * @param sysUserSearchVO 导出数据的查询条件
+     *
      * @author 孙超 created on 2017年10月30日
      */
     @RequestMapping("/exportUserExcel")
@@ -440,6 +473,7 @@ public class SysUserController {
      * what: 跳转到导入用户页面
      *
      * @return
+     *
      * @author 孙超 created on 2017年10月30日
      */
     @RequestMapping("/toImportUser")
@@ -454,6 +488,7 @@ public class SysUserController {
      * @param request
      * @param response
      * @param listJson 包含校验结果的集合
+     *
      * @author 孙超 created on 2017年10月30日
      */
     @SuppressWarnings("unchecked")
@@ -482,6 +517,7 @@ public class SysUserController {
      * @param file     需要导入的文件
      * @param request
      * @param response
+     *
      * @author 孙超 created on 2017年10月30日
      */
     @RequestMapping("/validationImportUser")
@@ -503,7 +539,9 @@ public class SysUserController {
      *
      * @param request
      * @param response
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/view")
@@ -570,7 +608,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param sysUser  用户信息
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月6日
      */
     @RequestMapping("/toUpdatePass")
@@ -588,7 +628,9 @@ public class SysUserController {
      * @param request
      * @param response
      * @param sysUser  用户信息
+     *
      * @return
+     *
      * @author 孔垂云 created on 2017年11月6日
      */
     @RequestMapping("/saveUpdatePass")
@@ -611,13 +653,15 @@ public class SysUserController {
      * @param request
      * @param response
      * @param sysUser
+     *
      * @return
+     *
      * @author 马丽静 created on 2017年11月15日
      */
     @RequestMapping("/completionCalculate")
     @ResponseBody
     public String completionCalculate(HttpServletRequest request, HttpServletResponse response, SysUser sysUser) {
-        Integer completion =  sysUserService.completionCalculate(sysUser);
+        Integer completion = sysUserService.completionCalculate(sysUser);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success", true);
         jsonObject.put("completion", completion);
