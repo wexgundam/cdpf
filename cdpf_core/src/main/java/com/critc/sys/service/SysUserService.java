@@ -77,7 +77,6 @@ public class SysUserService {
             sysUser.setPinyin(StringUtil.getPinYinHeadUpCase(sysUser.getRealName()));// 姓名拼音
             sysUser.setCompletion(completionCalculate(sysUser));
             flag = sysUserDao.add(sysUser);
-            flag = 1;
         }
         return flag;
     }

@@ -156,7 +156,7 @@
                         <td><c:if test="${critc:isP('SysUserUpdate')}">
                             <a href="toUpdate.htm?id=${sysUser.id }&backUrl=${backUrl}&pageType=0"> 修改 </a>
                         </c:if>
-                            <c:if test="${critc:isP('SysUserDelete')&&sysUser.isAdmin==1}">
+                            <c:if test="${critc:isP('SysUserDelete')&&sysUser.deletable==1}">
                                 <a href="javascript:delUser(${sysUser.id });"> 删除 </a>
                             </c:if>
                             <c:if test="${critc:isP('SysUserLock')&&sysUser.status==1}">

@@ -16,6 +16,10 @@ public class SysUser extends BaseModel {
 
     private int id;//用户id
     private Integer roleId;//所属角色
+    /**
+     * 是否能够删除，0:不可以被删除；1：可以被删除。默认为1
+     */
+    private int deletable = 1;
     private String roleName;//角色描述
     @NotEmpty
     private String username;//登录账号
@@ -60,6 +64,7 @@ public class SysUser extends BaseModel {
         return "SysUser{" +
                 "id=" + id +
                 ", roleId=" + roleId +
+                ", deletable=" + deletable +
                 ", roleName='" + roleName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
@@ -85,7 +90,16 @@ public class SysUser extends BaseModel {
                 ", jobTitle='" + jobTitle + '\'' +
                 ", displayOrder=" + displayOrder +
                 ", lastLoginDate='" + lastLoginDate + '\'' +
+                ", completion=" + completion +
                 '}';
+    }
+
+    public int getDeletable() {
+        return deletable;
+    }
+
+    public void setDeletable(int deletable) {
+        this.deletable = deletable;
     }
 
     public String getAvatar() {

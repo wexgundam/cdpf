@@ -9,16 +9,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.critc.util.model.BaseModel;
 
 /**
- * 
  * what:   系统角色
- * 
  *
  * @author 孔垂云 created on 2017年6月13日
  */
 public class SysRole extends BaseModel {
-	/**
-	 * 角色id
-	 */
+    /**
+     * 角色id
+     */
     private int id;
     /**
      * 角色名称
@@ -44,7 +42,7 @@ public class SysRole extends BaseModel {
     /**
      * 是否能够删除，0:不可以被删除；1：可以被删除。默认为1
      */
-    private int deletable;
+    private int deletable = 1;
 
     public int getDeletable() {
         return deletable;
@@ -56,9 +54,9 @@ public class SysRole extends BaseModel {
 
     @Override
     public String toString() {
-        return "SysRole{" 
-        		+ "id=" + id
-        		+ ", name='" + name + '\''
+        return "SysRole{"
+                + "id=" + id
+                + ", name='" + name + '\''
                 + ", description='" + description + '\''
                 + ", displayOrder=" + displayOrder
                 + ", createUserId=" + createUserId

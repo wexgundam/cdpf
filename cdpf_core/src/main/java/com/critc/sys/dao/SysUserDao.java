@@ -29,12 +29,14 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * @author 马丽静 created on 2017年11月6日
      */
     public int add(SysUser sysUser) {
-        String sql = "insert into t_sys_user(id,username,password,avatar,randomcode,status,real_name,mobile," +
-                "creator_id,creator_real_name,created_at,role_id,department_id,pinyin,email,nation,gender,political,education," +
-                "graduated_school,major,idcard,telephone,post,job_title,display_order,last_login_date,completion)";
-        sql += " values(seq_t_sys_user.nextval,:username,:password,:avatar,:randomcode,1,:realName,:mobile," +
-                ":creatorId,:creatorRealName,sysdate,:roleId,:departmentId,:pinyin,:email,:nation,:gender,:political,:education," +
-                ":graduatedSchool,:major,:idcard,:telephone,:post,:jobTitle,:displayOrder,:lastLoginDate,:completion)";
+        String sql = "insert into t_sys_user(id,username,password,avatar,randomcode,status,real_name,mobile,deletable," +
+                "creator_id,creator_real_name,created_at,last_editor_id,last_editor_real_name,last_edited_at,role_id," +
+                "department_id,pinyin,email,nation,gender,political,education,graduated_school,major,idcard,telephone," +
+                "post,job_title,display_order,last_login_date,completion)";
+        sql += "values(seq_t_sys_user.nextval,:username,:password,:avatar,:randomcode,1,:realName,:mobile,:deletable," +
+                ":creatorId,:creatorRealName,sysdate,:lastEditorId,:lastEditorRealName,sysdate,:roleId,:departmentId," +
+                ":pinyin,:email,:nation,:gender,:political,:education,:graduatedSchool,:major,:idcard,:telephone,:post," +
+                ":jobTitle,:displayOrder,:lastLoginDate,:completion)";
         return insertForId(sql, sysUser, "id");
     }
 
@@ -46,7 +48,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * @return
      */
     public int update(SysUser sysUser) {
-        String sql = "update t_sys_user set real_name=:realName,role_id=:roleId,mobile=:mobile," +
+        String sql = "update t_sys_user set real_name=:realName,role_id=:roleId,mobile=:mobile,deletable=:deletable," +
                 "last_editor_id=:lastEditorId,last_editor_real_name=:lastEditorRealName,last_edited_at=sysdate," +
                 "department_id=:departmentId, pinyin=:pinyin,avatar=:avatar," +
                 "email=:email,nation=:nation,gender=:gender,political=:political,education=:education," +
@@ -98,7 +100,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
     }
 
     public SysUser get(int id) {
-        String sql = "select t.id,t.id,t.username,t.password,t.randomcode,t.status,t.real_name,t.mobile,t.avatar," +
+        String sql = "select t.id,t.id,t.username,t.password,t.randomcode,t.status,t.real_name,t.mobile,t.avatar,t.deletable," +
                 "t.creator_id,t.creator_real_name,t.created_at,t.last_editor_id,t.last_editor_real_name,t.last_edited_at," +
                 "t.department_id,t.is_admin,t.is_check,t.pinyin,t.email,t.gender,t.nation,t.political,t.education,t.graduated_school," +
                 "t.major,t.idcard,t.telephone,t.post,t.job_title,t.display_order,t.last_login_date,t.completion,(select name " +
@@ -118,7 +120,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * @author 马丽静 created on 2017年11月6日
      */
     public SysUser getByUsername(String username) {
-        String sql = "select t.id,t.username,t.password,t.randomcode,t.status,t.real_name,t.mobile,t.avatar,t.role_id," +
+        String sql = "select t.id,t.username,t.password,t.randomcode,t.status,t.real_name,t.mobile,t.avatar,t.role_id,t.deletable," +
                 "t.creator_id,t.creator_real_name,t.created_at,t.last_editor_id,t.last_editor_real_name,t.last_edited_at," +
                 "(select name from t_sys_role where id=role_id) roleName from t_sys_user t where username=?";
         return get(sql, username);
@@ -132,7 +134,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * @return
      */
     public SysUser getByMobile(String mobile) {
-        String sql = "select t.id,t.username,t.password,t.randomcode,t.status,t.real_name,t.mobile,t.avatar," +
+        String sql = "select t.id,t.username,t.password,t.randomcode,t.status,t.real_name,t.mobile,t.avatar,t.deletable," +
                 "t.creator_id,t.creator_real_name,t.created_at,t.last_editor_id,t.last_editor_real_name,t.last_edited_at," +
                 "(select name from t_sys_role where id=role_id) roleName from t_sys_user t where mobile=?";
         return get(sql, mobile);
@@ -146,7 +148,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * @return
      */
     public List<SysUser> list(SysUserSearchVO sysUserSearchVO) {
-        String sql = "select t.id, t.username, t.password, t.randomcode, t.status, t.real_name, t.mobile, t.avatar,t.role_id," +
+        String sql = "select t.id, t.username, t.password, t.randomcode, t.status, t.real_name, t.mobile, t.avatar,t.role_id,t.deletable," +
                 "t.creator_id,t.creator_real_name,t.created_at,t.last_editor_id,t.last_editor_real_name,t.last_edited_at," +
                 "t.department_id,t.is_admin, t.is_check, t.pinyin, t.email, t.gender, t.nation, t.political, t.education," +
                 "t.graduated_school,t.major, t.idcard, t.telephone, t.post, t.job_title, t.display_order,t.last_login_date," +
@@ -159,7 +161,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
     }
 
     public List<SysUser> listAll() {
-        String sql = "select t.id, t.username, t.password, t.randomcode, t.status, t.real_name, t.mobile, t.avatar," +
+        String sql = "select t.id, t.username, t.password, t.randomcode, t.status, t.real_name, t.mobile, t.avatar,t.deletable," +
                 "t.creator_id,t.creator_real_name,t.created_at,t.last_editor_id,t.last_editor_real_name,t.last_edited_at," +
                 "t.department_id,t.is_admin, t.is_check, t.pinyin, t.email, t.gender, t.nation, t.political, t.education," +
                 "t.graduated_school, t.major, t.idcard, t.telephone, t.post, t.job_title, t.display_order,t.last_login_date," +

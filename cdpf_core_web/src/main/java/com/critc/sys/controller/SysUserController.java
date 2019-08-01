@@ -241,6 +241,8 @@ public class SysUserController {
         sysUser.setStatus(1);
         sysUser.setCreatorId(SessionUtil.getUserId(request));
         sysUser.setCreatorRealName(SessionUtil.getUserRealName(request));
+        sysUser.setLastEditorId(SessionUtil.getUserId(request));
+        sysUser.setLastEditorRealName(SessionUtil.getUserRealName(request));
         int flag = sysUserService.add(sysUser);
         if (flag == 0)
             return "forward:/error.htm?resultCode=" + GlobalCode.OPERA_FAILURE;// 用户信息新增失败;
