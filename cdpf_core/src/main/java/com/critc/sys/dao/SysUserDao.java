@@ -104,7 +104,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
                 "t.creator_id,t.creator_real_name,t.created_at,t.last_editor_id,t.last_editor_real_name,t.last_edited_at," +
                 "t.department_id,t.is_admin,t.is_check,t.pinyin,t.email,t.gender,t.nation,t.political,t.education,t.graduated_school," +
                 "t.major,t.idcard,t.telephone,t.post,t.job_title,t.display_order,t.last_login_date,t.completion,(select name " +
-                "from t_sys_department d where t.department_id=d.id) as department_name,(select name " +
+                "from t_sys_department d where t.department_id=d.id) as department_name,role_id,(select name " +
                 "from t_sys_role d where t.role_id=d.id) as role_name from t_sys_user t where " +
                 "id=? ";
         return get(sql, id);
