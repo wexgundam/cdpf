@@ -48,7 +48,7 @@ public class SysUserDao extends BaseDao<SysUser, SysUserSearchVO> {
      * @return
      */
     public int update(SysUser sysUser) {
-        String sql = "update t_sys_user set real_name=:realName,role_id=:roleId,mobile=:mobile,deletable=:deletable," +
+        String sql = "update t_sys_user set real_name=:realName,role_id=:roleId,mobile=:mobile," +
                 "last_editor_id=:lastEditorId,last_editor_real_name=:lastEditorRealName,last_edited_at=sysdate," +
                 "department_id=:departmentId, pinyin=:pinyin,avatar=:avatar," +
                 "email=:email,nation=:nation,gender=:gender,political=:political,education=:education," +
